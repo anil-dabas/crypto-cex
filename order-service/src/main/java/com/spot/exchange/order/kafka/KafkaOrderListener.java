@@ -26,7 +26,7 @@ public class KafkaOrderListener {
   public void listenMatchedOrdersUpdate(String message) {
     try {
       TradeResponse tradeResponse = objectMapper.readValue(message, TradeResponse.class);
-      orderService.updateMatchedOrderDetailsAndPublishResponse(tradeResponse);
+      //orderService.updateMatchedOrderDetailsAndPublishResponse(tradeResponse);
       log.info("Received trade response: {}", tradeResponse);
     } catch (JsonProcessingException e) {
       log.info("Error processing message: {}", e.getMessage());

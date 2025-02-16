@@ -32,7 +32,7 @@ public class Order {
        private int side;// "BUY" = 1, // or "SELL -1"
        private int orderType;// "LIMIT", // or "MARKET"
        private String quantity;// "2",
-       private BigDecimal limitPrice;// "29",
+       private int limitPrice;// "29",
        private String quoteQuantity;// "0.0",
        private String instId;
        private LocalDateTime createdAt;

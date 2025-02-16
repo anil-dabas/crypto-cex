@@ -80,7 +80,7 @@ public class TradeServiceImpl implements TradeService {
         .orderId(orderIdGenerator.nextId())
         .quantity(placeOrderParam.getQuantity())
         .instId(placeOrderParam.getInstId())
-        .limitPrice(toBigDecimal(placeOrderParam.getLimitPrice()))
+        .limitPrice(Integer.parseInt(placeOrderParam.getLimitPrice()))
         .userId(placeOrderParam.getUserId())
         .state(OrderState.PENDING)
         .build();

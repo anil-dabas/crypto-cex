@@ -19,6 +19,5 @@ public class OrderRequestPayload {
     private int orderType;// "LIMIT", // or "MARKET"
     private String quantity;// "2",
     private String price;// "29",
-    private String quoteQuantity;// "0.0",
     private long createdAt;
 }

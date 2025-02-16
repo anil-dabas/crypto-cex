@@ -15,8 +15,6 @@ public class KafkaOrderPublisher {
 
     @Value("${kafka.topic.order}")
     private String orderTopic;
-    @Value("${kafka.topic.orderUpdate}")
-    private String orderUpdateTopic;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
@@ -26,25 +24,13 @@ public class KafkaOrderPublisher {
         this.objectMapper = objectMapper;
     }
 
-    public void publishOrder(OrderRequestPayload order, String instId) {
+    public void publishOrder(OrderRequestPayload order) {
         try {
-            String currentTopic  = orderTopic.replace("{symbol}",instId);
             String message = objectMapper.writeValueAsString(order);
-            kafkaTemplate.send(currentTopic, message);
+            kafkaTemplate.send(orderTopic, message);
             log.debug("Publishing Order to Kafka: {}", message);
         } catch (JsonProcessingException e) {
             log.error("Error while serializing Order data: {}", e.getMessage());
-        }
-    }
-
-
-    public void publishOrderUpdate(UpdateOrderPayload updateOrderPayload){
-        try {
-            String message = objectMapper.writeValueAsString(updateOrderPayload);
-            kafkaTemplate.send(orderUpdateTopic, message);
-            log.info("Publishing OrderUpdate to Kafka: {}", message);
-        } catch (JsonProcessingException e) {
-            log.info("Error while serializing OrderUpdate data: {}", e.getMessage());
         }
     }
 
